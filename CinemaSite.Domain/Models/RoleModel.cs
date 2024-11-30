@@ -9,6 +9,7 @@ namespace CinemaSite.Domain.Models
 {
     public class RoleModel
     {
+        public Guid Id { get; set; }
         public Role Role { get; set; }
     }
 }

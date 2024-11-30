@@ -7,11 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CinemaSite.Application\CinemaSite.Application.csproj" />
+    <ProjectReference Include="..\CinemaSite.BusinessLogic\CinemaSite.BusinessLogic.csproj" />
     <ProjectReference Include="..\CinemaSite.Domain\CinemaSite.Domain.csproj" />
+    <ProjectReference Include="..\CinemaSite.Persisence\CinemaSite.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

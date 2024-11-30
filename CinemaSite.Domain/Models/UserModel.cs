@@ -14,5 +14,6 @@ namespace CinemaSite.Domain.Models
         public string HashPassword { get; set; } = string.Empty;
 
         public List<RoleModel> Roles { get; set; } = [];
+        public List<MovieModel> Movies { get; set; } = [];
     }
 }
