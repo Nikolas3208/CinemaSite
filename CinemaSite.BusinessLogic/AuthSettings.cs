@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace CinemaSite.BusinessLogic
 {
-    public class AccountService
+    public class AuthSettings
     {
-        public void Register(string login, string email, string password)
-        {
-
-        }
+        public TimeSpan Expires { get; set; }
+        public string SecretKey { get; set; } = string.Empty;
     }
 }

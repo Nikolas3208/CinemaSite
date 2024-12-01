@@ -1,4 +1,10 @@
+using CinemaSite.BusinessLogic;
+using CinemaSite.BusinessLogic.Extensions;
+using CinemaSite.BusinessLogic.Intefaces.Services;
+using CinemaSite.BusinessLogic.Services;
 using CinemaSite.Domain;
+using CinemaSite.Domain.Interfaces;
+using CinemaSite.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,13 +16,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddDbContext<CinemaDbContext>(options => 
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(CinemaDbContext)));
+    options.UseSqlite(builder.Configuration.GetConnectionString(nameof(CinemaDbContext)));
 });
 
-var app = builder.Build();
+builder.Services.AddScoped<IUserRepository, UsersRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddAuth(builder.Configuration);
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -26,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

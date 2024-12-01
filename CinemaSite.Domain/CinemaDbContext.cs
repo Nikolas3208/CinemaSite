@@ -18,7 +18,6 @@ namespace CinemaSite.Domain
 
         public CinemaDbContext(DbContextOptions<CinemaDbContext> options) : base(options) 
         {
-            
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
