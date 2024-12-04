@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/login-style.css">
+</head>
+<body>
+    <div class="test">
+        <div class="login-container">
+            <h1>Вхід</h1>
+            <form method="post" asp-controller="Users" asp-action="LoginPost" id="login-form">
+                <label for="name">Ім'я</label>
+                <input type="text" id="name" name="login" placeholder="Введіть своє ім'я" required>
+
+                <label for="password">Пароль</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Введіть свій пароль" required>
+                    <button type="button" id="toggle-password" class="toggle-password">👁️</button>
+                </div>
+
+                <button class="submit" type="submit">Увійти</button>
+            </form>
+            <div style="margin-bottom: 10px;" id="message"></div>
+            <span class="b-form__item-wr b-link">Немає облікового запису?  <a href="~/Users/Register/" id="link-auth" class="b-form__item-link" title="Войти">Зареєструйтесь ›</a></span>
+        </div>
+        <script src="js/login-script.js"></script>
+    </div>
+</body>
+</html>

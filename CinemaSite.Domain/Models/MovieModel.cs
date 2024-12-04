@@ -14,7 +14,7 @@ namespace CinemaSite.Domain.Models
 
         public string Description { get; set; } = string.Empty;
 
-        public decimal Price { get; set; }
+        public decimal Price { get; set; } = decimal.Zero;
 
         public List<UserModel> Users { get; set; } = [];
     }

@@ -11,5 +11,7 @@ namespace CinemaSite.Domain.Models
     {
         public Guid Id { get; set; }
         public Role Role { get; set; }
+
+        public List<UserModel> Users { get; set; } = [];
     }
 }

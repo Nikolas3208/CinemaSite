@@ -1,4 +1,5 @@
-﻿using CinemaSite.Domain.Models;
+﻿using CinemaSite.Domain.Interfaces;
+using CinemaSite.Domain.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace CinemaSite.BusinessLogic.Services
 {
-    public class JwtService(IOptions<AuthSettings> options)
+    public class JwtService(IOptions<AuthSettings> options, IPasswordHasher passwordHasher)
     {
         public string GenerateToken(UserModel user)
         {
@@ -15,8 +16,13 @@ namespace CinemaSite.BusinessLogic.Services
             {
                 new Claim("login", user.Login),
                 new Claim("email", user.Email),
-                new Claim("id", user.Id.ToString())
+                new Claim("id", user.Id.ToString()),
+                new Claim("User", "true")
             };
+            if (user.Login == "admin" && passwordHasher.VerifyPassword(user, "admin"))
+            {
+                claims.Add(new Claim("Admin", "true"));
+            }
 
             var jwtToken = new JwtSecurityToken(
                 expires: DateTime.UtcNow.Add(options.Value.Expires),

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSite.Persistence", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSite.Application", "CinemaSite.Application\CinemaSite.Application.csproj", "{D652A820-7E28-4B2D-B276-6716E8D2B444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSite.Web", "CinemaSite.Web\CinemaSite.Web.csproj", "{4E76CA24-F957-4281-8B50-092A2F1BC824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaSite.Client", "CinemaSite.Client\CinemaSite.Client.csproj", "{C2B00527-EEAD-49B1-8035-D561F298AC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{D652A820-7E28-4B2D-B276-6716E8D2B444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D652A820-7E28-4B2D-B276-6716E8D2B444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D652A820-7E28-4B2D-B276-6716E8D2B444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E76CA24-F957-4281-8B50-092A2F1BC824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E76CA24-F957-4281-8B50-092A2F1BC824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E76CA24-F957-4281-8B50-092A2F1BC824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E76CA24-F957-4281-8B50-092A2F1BC824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B00527-EEAD-49B1-8035-D561F298AC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B00527-EEAD-49B1-8035-D561F298AC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B00527-EEAD-49B1-8035-D561F298AC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B00527-EEAD-49B1-8035-D561F298AC01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

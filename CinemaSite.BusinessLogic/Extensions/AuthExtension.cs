@@ -33,6 +33,18 @@ namespace CinemaSite.BusinessLogic.Extensions
                     };
                 });
 
+            servicesCollection.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                {
+                    policy.RequireClaim("Admin", "true");
+                });
+                options.AddPolicy("UserPolicy", policy =>
+                {
+                    policy.RequireClaim("User", "true");
+                });
+            });
+
             return servicesCollection;
         }
     }

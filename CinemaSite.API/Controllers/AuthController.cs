@@ -1,25 +1,44 @@
 ﻿using CinemaSite.BusinessLogic.Intefaces.Services;
 using CinemaSite.Domain;
+using CinemaSite.Persistence.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaSite.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AuthController(IUserService userService) : ControllerBase
+    public class MyBaseContriller : ControllerBase { }
+
+    public class AuthController(IUserService userService) : MyBaseContriller
     {
         [HttpPost("register")]
         public IActionResult Register(string login, string email, string password)
         {
-            userService.Register(login, email, password);
-            return Ok();
+            var result = userService.Register(login, email, password);
+            if (result == Domain.Enums.UserServiceType.Ok)
+                return Ok();
+            else
+                throw new Exception();
         }
 
-        [HttpPost("login")]
-        public IActionResult Login(string login, string password)
+        [HttpPost("register2")]
+        public IActionResult Register(User user)
+        {
+            return Register(user.Login, user.Email, user.Password);
+        }
+
+        [HttpGet("login")]
+        public string Login(string login, string password)
         {
             var result = userService.Login(login, password);
-            return Ok(result);
+            return result;
+        }
+
+        [HttpGet("login2")]
+        public string Login(User user)
+        {
+            return Login(user.Login, user.Password);
         }
     }
 }

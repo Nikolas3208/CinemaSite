@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaSite.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace CinemaSite.BusinessLogic.Intefaces.Services
 {
     public interface IUserService
     {
-        void Register(string login, string email, string password);
+        UserServiceType Register(string login, string email, string password);
 
         string Login(string login, string password);
     }

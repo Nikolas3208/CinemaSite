@@ -17,7 +17,7 @@ namespace CinemaSite.Domain.Configurations
             builder.HasKey(u => u.Id);
 
             builder.HasMany(u => u.Movies).WithMany(m => m.Users);
-            builder.HasMany(u => u.Roles);
+            builder.HasMany(u => u.Roles).WithMany(r => r.Users);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CinemaSite.Domain.Repositories
 {
-    public class UsersRepository(CinemaDbContext dbContext) : IUserRepository
+    public class UsersRepository(CinemaDbContext dbContext) : IUsersRepository
     {
         public async Task<List<UserModel>> Get()
         {
@@ -26,22 +26,46 @@ namespace CinemaSite.Domain.Repositories
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public Task<UserModel?> GetByLogin(string login)
+        public UserModel? GetByLogin(string login)
         {
-            var query = dbContext.Users.AsNoTracking();
+            var user = dbContext.Users.AsNoTracking().FirstOrDefault(u => u.Login == login);
 
-            if(login != null && login != "")
-            {
-                query = query.Where(u => u.Login.Contains(login));
-            }
-
-            return query.FirstOrDefaultAsync();
+            return user;
         }
 
         public async Task Add(UserModel user)
         {
             await dbContext.Users.AddAsync(user);
             await dbContext.SaveChangesAsync();
+        }
+
+        public UserModel? GetByEmail(string email)
+        {
+            var user = dbContext.Users.AsNoTracking().FirstOrDefault(u => u.Email == email);
+
+            return user;
+        }
+
+        public async Task Update(UserModel user)
+        {
+            dbContext.Users.Update(user);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async void RemoveAsync(UserModel user)
+        {
+            dbContext.Users.Remove(user);
+            await dbContext.SaveChangesAsync();
+
+        }
+
+        public async void RemoveAsync(Guid id)
+        {
+            var user = GetById(id);
+
+            dbContext.Users.Remove(user.Result);
+            await dbContext.SaveChangesAsync();
+
         }
     }
 }

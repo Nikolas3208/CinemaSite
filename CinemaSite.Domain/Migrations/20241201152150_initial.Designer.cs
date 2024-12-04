@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaSite.Domain.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    [Migration("20241201062648_initial")]
+    [Migration("20241201152150_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -51,12 +51,7 @@ namespace CinemaSite.Domain.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("UserModelId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserModelId");
 
                     b.ToTable("Roles");
                 });
@@ -99,11 +94,19 @@ namespace CinemaSite.Domain.Migrations
                     b.ToTable("MovieModelUserModel");
                 });
 
-            modelBuilder.Entity("CinemaSite.Domain.Models.RoleModel", b =>
+            modelBuilder.Entity("RoleModelUserModel", b =>
                 {
-                    b.HasOne("CinemaSite.Domain.Models.UserModel", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("UserModelId");
+                    b.Property<Guid>("RolesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleModelUserModel");
                 });
 
             modelBuilder.Entity("MovieModelUserModel", b =>
@@ -121,9 +124,19 @@ namespace CinemaSite.Domain.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CinemaSite.Domain.Models.UserModel", b =>
+            modelBuilder.Entity("RoleModelUserModel", b =>
                 {
-                    b.Navigation("Roles");
+                    b.HasOne("CinemaSite.Domain.Models.RoleModel", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaSite.Domain.Models.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

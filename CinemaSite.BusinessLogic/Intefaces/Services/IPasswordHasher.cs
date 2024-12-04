@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace CinemaSite.Domain.Interfaces
 {
-    public interface IUserRepository
+    public interface IPasswordHasher
     {
-        Task<List<UserModel>> Get();
+        string Generate(UserModel user, string password);
 
-        Task<UserModel?> GetById(Guid id);
-
-        Task<UserModel?> GetByLogin(string login);
-
-        Task Add(UserModel user);
+        bool VerifyPassword(UserModel user, string password);
     }
 }

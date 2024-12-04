@@ -22,6 +22,8 @@ namespace CinemaSite.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new MovieConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="~/css/register-style.css">
+    <script src="js/register-script.js"></script>
+</head>
+<body>
+    <div class="test">
+        <div class="registration-container">
+            <h1>Регістрація</h1>
+            <form method="post" asp-controller="Users" asp-action="RegisterPost" id="registration-form">
+                <label for="name">Ім'я</label>
+                <input type="text" id="name" name="login" placeholder="Введіть своє ім'я" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Введіть адресу електронної пошти" required>
+
+                <label for="password">Пароль</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Введіть свій пароль" required>
+                    <button type="button" id="toggle-password" class="toggle-password">👁️</button>
+                </div>
+                <button class="submit" type="submit">Зареєструватись</button>
+            </form>
+            <div style="margin-bottom: 10px;" id="message"></div>
+            <span class="b-form__item-wr b-link">Вже є обліковий запис?  <a href="~/Users/Login" id="link-auth" class="b-form__item-link" title="Войти">Увійти ›</a></span>
+        </div>
+    </div>
+</body>
+</html>

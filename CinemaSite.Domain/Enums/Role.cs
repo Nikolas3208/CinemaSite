@@ -8,9 +8,7 @@ namespace CinemaSite.Domain.Enums
 {
     public enum Role
     {
-        Create = 1,
-        Read = 2,
-        Update = 3,
-        Delete = 4
+        Admin = 1,
+        User = 2
     }
 }

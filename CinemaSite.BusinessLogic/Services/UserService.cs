@@ -1,5 +1,6 @@
 ﻿using CinemaSite.BusinessLogic.Intefaces.Services;
 using CinemaSite.Domain;
+using CinemaSite.Domain.Enums;
 using CinemaSite.Domain.Interfaces;
 using CinemaSite.Domain.Models;
 using Microsoft.AspNetCore.Identity;
@@ -11,9 +12,10 @@ using System.Threading.Tasks;
 
 namespace CinemaSite.BusinessLogic.Services
 {
-    public class UserService(IUserRepository repository, JwtService jwtService) : IUserService
+    public class UserService(IUsersRepository repository, IPasswordHasher passwordHasher, JwtService jwtService) 
+        : IUserService
     {
-        public void Register(string login, string email, string password)
+        public UserServiceType Register(string login, string email, string password)
         {
             var user = new UserModel
             {
@@ -22,29 +24,37 @@ namespace CinemaSite.BusinessLogic.Services
                 Id = Guid.NewGuid()
             };
 
-            user.HashPassword = new PasswordHasher<UserModel>().HashPassword(user, password);
+            user.HashPassword = passwordHasher.Generate(user, password);
 
-            repository.Add(user);
+            var userget = repository.GetByLogin(login);
+
+            if (userget == null)
+            {
+                if(repository.GetByEmail(email) == null)
+                repository.Add(user);
+            }
+            else
+                return UserServiceType.LoginBusy;
+
+            return UserServiceType.Ok;
         }
 
         public string Login(string login, string password)
         {
-            var user = repository.GetByLogin(login).Result;
+            var user = repository.GetByLogin(login);
             if (user == null)
                 return null;
 
-            var result = new PasswordHasher<UserModel>().VerifyHashedPassword(user, user.HashPassword, password);
+            var result = passwordHasher.VerifyPassword(user, password);
 
-            if (result == PasswordVerificationResult.Success)
+            if (result)
             {
                 return jwtService.GenerateToken(user);
             }
             else 
             {
-                throw new Exception();
+                return null;
             }
-
-            return null;
         }
     }
 }
