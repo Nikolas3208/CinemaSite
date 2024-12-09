@@ -7,23 +7,39 @@ namespace CinemaSite.API.Controllers
     public class MovieController(IMoviesRepository moviesRepository) : MyBaseContriller
     {
         [HttpGet("get")]
-        public IActionResult GetMovies()
+        public async Task<List<MovieModel>> GetMovies()
         {
-            return Ok(moviesRepository.Get());
+            var result = await moviesRepository.Get();
+
+            Console.WriteLine("Test");
+            
+            return result;
         }
 
-        [HttpPost("add")]
-        public IActionResult AddMovie(string title, IFormFile? formFile)
+        [HttpGet("getbyid")]
+        public async Task<MovieModel?> GetById(Guid guid)
         {
-            var movie = new MovieModel
-            {
-                Title = title,
-                Id = Guid.NewGuid()
-            };
+            var result = await moviesRepository.GetById(guid);
 
-            moviesRepository.Add(movie);
+            return result;
+        }
 
-            return Ok(movie);
+
+        [HttpGet("getbytitle")]
+        public async Task<MovieModel?> GetByTitle(string title)
+        {
+            var result = await moviesRepository.GetByTitle(title);
+
+            return result;
+        }
+
+
+        [HttpPost("add")]
+        public IActionResult AddMovie(MovieModel movieModel)
+        {
+            moviesRepository.Add(movieModel);
+
+            return Ok();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace CinemaSite.Domain
     {
         public DbSet<UserModel> Users { get; set; }
         public DbSet<MovieModel> Movies { get; set; }
-        public DbSet<RoleModel> Roles { get; set; }
 
         public CinemaDbContext(DbContextOptions<CinemaDbContext> options) : base(options) 
         {
@@ -22,7 +21,6 @@ namespace CinemaSite.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
 
             base.OnModelCreating(modelBuilder);

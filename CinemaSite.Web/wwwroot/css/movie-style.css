@@ -1,0 +1,174 @@
+﻿
+
+.main-container {
+    width: 90%; /* Розмір блоку можна налаштувати */
+    margin: 4px auto; /* Центрування контенту */
+    padding: 4px;
+    border: 1px solid gray;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 10px 10px 10px 10px grey;
+    background-color: rgb(61, 58, 58);
+    margin: 0 auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #363c49;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    background-image: url('Знімок екрана 2024-12-07 о 17.05.57.png');
+}
+
+.header-content {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Додає напівпрозорий фон для контрасту */
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.category {
+    margin-bottom: 3rem;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.carousel-item-test {
+
+    flex-shrink: 0;
+    cursor:pointer;
+    width: 200px;
+    text-align: center;
+    scroll-snap-align: center;
+}
+
+    .carousel-item-test img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+button {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.watch-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.ticket-btn {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.carousel-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.poster
+{
+    width:200px;
+    height:300px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    display: none; /* За замовчуванням приховано */
+    position: fixed;
+    z-index: 1; /* Важливий для того, щоб вікно було зверху */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #555f74;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+}
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+button {
+    margin-top: 10px;
+}

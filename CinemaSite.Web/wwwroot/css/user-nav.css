@@ -1,0 +1,33 @@
+﻿.drop-image
+{
+    cursor: pointer;
+}
+
+.drop-down {
+    position: absolute;
+    margin: 0px -50px;
+    background-color: #edededff;
+    display: none;
+    min-width: 100px;
+    padding: 10px 5px;
+}
+
+.drop-down a{
+    text-decoration:none;
+    color:black;
+    display:block;
+}
+
+.drop-down a:hover
+{
+    background-color: #bbb;
+}
+
+.user-nav{
+    display:inline-block;
+}
+
+.user-nav:hover .drop-down
+{
+    display:block;
+}

@@ -3,6 +3,7 @@ using CinemaSite.Domain;
 using CinemaSite.Domain.Enums;
 using CinemaSite.Domain.Interfaces;
 using CinemaSite.Domain.Models;
+using CinemaSite.Persistence.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace CinemaSite.BusinessLogic.Services
             return UserServiceType.Ok;
         }
 
-        public string Login(string login, string password)
+        public User Login(string login, string password)
         {
             var user = repository.GetByLogin(login);
             if (user == null)
@@ -49,7 +50,9 @@ namespace CinemaSite.BusinessLogic.Services
 
             if (result)
             {
-                return jwtService.GenerateToken(user);
+                User user1 = new User { Email = user.Email, Login = user.Login, Password = user.HashPassword };
+                user1.Token = jwtService.GenerateToken(user);
+                return user1;
             }
             else 
             {

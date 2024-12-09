@@ -1,0 +1,82 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: rgb(239, 239, 239) !important;
+    font-size: 16px;
+    min-width: 280px;
+}
+
+.header {
+    width: 100%;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #313131;
+}
+
+.header-user-position {
+    float: right;
+    right: 5px;
+}
+
+.my-container {
+    width: 1000px;
+    max-width: 100%;
+    box-shadow: 5px 5px 5px 5px grey;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.movie-content {
+    padding: 0 30px;
+    margin: 10px auto;
+}
+
+.movie-content-info-grid {
+    display: grid;
+    grid-template-columns: 200px 700px;
+    grid-gap: 20px;
+}
+
+.movie-content-info {
+    margin: 10px 0;
+}
+
+    .movie-content-info .movie-content-img {
+        padding: 4px;
+        border: 1px solid gray;
+        border-radius: 2%;
+        display: inline-block;
+        width: 200px;
+        height: 300px;
+    }
+
+.movie-content-info-grid-2 .movie-content-infotable {
+    width: 100%;
+    margin: 5px 0px;
+    float: left;
+}
+
+.info-pos {
+    display: inline-block;
+}
+
+.movie-content-video {
+    width: 80%; /* Зменшена ширина контейнера */
+    max-width: 900px; /* Зменшена максимальна ширина */
+    margin: 20px auto; /* Центрування плеєра */
+    background-color: #000;
+    position: relative;
+    padding: 8px; /* Зменшені падінги */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+iframe {
+    width: 100%;
+    height: 480px;
+    border-radius: 8px;
+}

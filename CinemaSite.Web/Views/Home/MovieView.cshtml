@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Смотреть фильм @Model.Title онлайн в хорошем качестве">
+    <link rel="stylesheet" href="~/css/movie-view.css">
+    <title>Movie viewer</title>
+</head>
+<body>
+
+    <div class="my-container">
+        <div class="header">
+            <a class="header-user-position" href="UserPage.html">
+                <img src="img/uiserIcon_negate.png"
+                     height="25" alt="user page" />
+            </a>
+        </div>
+        <div class="movie-content">
+            <div class="movie-content-info">
+                <div class="movie-content-title">
+                    <h3 class="movie-title"><b>@Model.Title</b></h3>
+                </div>
+                <div class="movie-content-info-grid">
+                    <div class="movie-content-info-grid-1">
+                        <div class="movie-content-img">
+                            <img alt="Movie Title" width="100%" height="100%" src="~/files/posters/@Model.PosterPath">
+                        </div>
+                    </div>
+                    <div class="movie-content-info-grid-2">
+                        <div class="movie-content-infotable">
+                            <table>
+                                <tr>
+                                    <td><h5>Дата выхода: </h5></td>
+                                    <td><h6>@Model.Date</h6></td>
+                                </tr>
+                                <tr>
+                                    <td><h5>Страна: </h5></td>
+                                    <td><h6>@Model.Country</h6></td>
+                                </tr>
+                                <tr>
+                                    <td><h5>Режисер: </h5></td>
+                                    <td><h6>@Model.Director</h6></td>
+                                </tr>
+                                <tr>
+                                    <td><h5>Жарн: </h5></td>
+                                    <td><h6>@Model.Genre</h6></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="movie-content-description">
+                <h3>Про что фильм «@Model.Title»:</h3>
+                <h6>@Model.Description</h6>
+            </div>
+            <div class="movie-content-video">
+                <iframe id="movie-video" width="100%" height="480px" allow="fullscreen" src="https://drive.google.com/file/d/@Model.MoviePath/preview" type="video/mp4" controls>
+                    Ваш браузер не підтримує елемент відео.
+                </iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -23,7 +23,7 @@
     <ProjectReference Include="..\CinemaSite.Application\CinemaSite.Application.csproj" />
     <ProjectReference Include="..\CinemaSite.BusinessLogic\CinemaSite.BusinessLogic.csproj" />
     <ProjectReference Include="..\CinemaSite.Domain\CinemaSite.Domain.csproj" />
-    <ProjectReference Include="..\CinemaSite.Persisence\CinemaSite.Persistence.csproj" />
+    <ProjectReference Include="..\CinemaSite.Persistence\CinemaSite.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,10 +12,14 @@ namespace CinemaSite.Domain.Models
 
         public string Title { get; set; } = string.Empty;
 
+        public DateTime Date { get; set; }
+        public string Country { get; set; } = string.Empty;
+        public string Director { get; set; } = string.Empty;
+        public string Genre { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-
         public decimal Price { get; set; } = decimal.Zero;
-
+        public string PosterPath { get; set; } = string.Empty;
+        public string MoviePath { get; set; } = string.Empty;
         public List<UserModel> Users { get; set; } = [];
     }
 }

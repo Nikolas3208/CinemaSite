@@ -1,6 +1,7 @@
 ﻿using CinemaSite.BusinessLogic.Intefaces.Services;
 using CinemaSite.Domain;
-using CinemaSite.Persistence.Model;
+using CinemaSite.Domain.Models;
+using CinemaSite.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,14 +30,14 @@ namespace CinemaSite.API.Controllers
         }
 
         [HttpGet("login")]
-        public string Login(string login, string password)
+        public User Login(string login, string password)
         {
             var result = userService.Login(login, password);
             return result;
         }
 
         [HttpGet("login2")]
-        public string Login(User user)
+        public User Login(User user)
         {
             return Login(user.Login, user.Password);
         }

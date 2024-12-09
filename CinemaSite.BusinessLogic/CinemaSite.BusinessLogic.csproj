@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CinemaSite.Domain\CinemaSite.Domain.csproj" />
+    <ProjectReference Include="..\CinemaSite.Persistence\CinemaSite.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,10 +21,10 @@ namespace CinemaSite.API.Controllers
             return Ok(userRepository.GetById(id));
         }
 
-        [HttpGet]
-        public IActionResult GetUserByLogin(string login)
+        [HttpGet("userbylogin")]
+        public UserModel? GetUserByLogin(string login)
         {
-            return Ok(userRepository.GetByLogin(login));
+            return userRepository.GetByLogin(login);
         }
 
         [HttpGet]

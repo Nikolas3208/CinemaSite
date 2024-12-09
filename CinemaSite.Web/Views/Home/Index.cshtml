@@ -1,7 +1,112 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using CinemaSite.Domain.Models
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кіносайт</title>
+    <link rel="stylesheet" href="~/css/movie-style.css">
+</head>
+<body>
+    <div>
+        <header>
+            <div class="header-content">
+                <h1>Ласкаво просимо на CrazyViewing</h1>
+                <p>Найкращі фільми, серіали, мультфільми та аніме чекають на вас!</p>
+            </div>
+        </header>
 
-<h2>Hello</h2>
+        
+
+        <div class="content">
+            <section class="category">
+                <h2>Фільми</h2>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="scrollCarousel('movies', -1)">&#10094;</button>
+                    <div class="carousel-container">
+                        @foreach(MovieModel movie in Model)
+                        {
+                            <a href="~/Home/MovieView?title=@movie.Title">
+                                <div class="carousel-item-test">
+                                    <img class="poster" src="~/files/posters/@movie.PosterPath" aly="@movie.Title" />
+                                    <h3>@movie.Title</h3>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <button class="carousel-btn next" onclick="scrollCarousel('movies', 1)">&#10095;</button>
+                </div>
+            </section>
+
+            <section class="category">
+                <h2>Серіали</h2>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="scrollCarousel('series', -1)">&#10094;</button>
+                    <div class="carousel-container" id="series">
+                        <div class="carousel-item">
+                            <img src="борд.jpg" alt="Серіал 1">
+                            <h3>Пригоди Люсіль</h3>
+                            <button class="watch-btn" onclick="watchMovie('Пригоди Люсіль')">Дивитися</button>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="scrollCarousel('series', 1)">&#10095;</button>
+                </div>
+            </section>
+
+            <section class="category">
+                <h2>Мультфільми</h2>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="scrollCarousel('cartoons', -1)">&#10094;</button>
+                    <div class="carousel-container" id="cartoons">
+                        <div class="carousel-item">
+                            <img src="cartoon1.jpg" alt="Мультфільм 1">
+                            <h3>Мультфільм 1</h3>
+                            <button class="watch-btn" onclick="watchMovie('Мультфільм 1')">Дивитися</button>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="scrollCarousel('cartoons', 1)">&#10095;</button>
+                </div>
+            </section>
+
+            <section class="category">
+                <h2>Аніме</h2>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="scrollCarousel('anime', -1)">&#10094;</button>
+                    <div class="carousel-container" id="anime">
+                        <div class="carousel-item">
+                            <img src="anime1.jpg" alt="Аніме 1">
+                            <h3>Аніме 1</h3>
+                            <button class="watch-btn" onclick="watchMovie('Аніме 1')">Дивитися</button>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="scrollCarousel('anime', 1)">&#10095;</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Модальне вікно -->
+        <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2 id="movieTitle"></h2>
+                <p id="moviePrice"></p>
+                <div>
+                    <label for="viewType">Тип перегляду:</label>
+                    <select id="viewType">
+                        <option value="online">Онлайн перегляд</option>
+                        <option value="cinema">Перегляд у кіно</option>
+                    </select>
+                </div>
+                <div id="seatSelection" style="display:none;">
+                    <label for="seat">Вибір місця:</label>
+                    <input type="number" id="seat" min="1" max="100" placeholder="Виберіть місце">
+                </div>
+                <button onclick="confirmBooking()">Підтвердити</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/js/movie-index.js"></script>
+</body>
+</html>

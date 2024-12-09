@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User page</title>
+    <link rel="stylesheet" href="~/css/user-index.css">
+</head>
+<body>
+    <div class="user-container">
+        <div class="user-grid-container">
+            <div class="user-header">
+                <h2 id="user-title">Ваші данні</h2>
+            </div>
+            <div class="user-img">
+                <a href="#"><img src="/files/img/user_ico.jpg" width="100%" alt="user-avatar"></a>
+            </div>
+            <div class="user-menu">
+                <h2>Menu</h2>
+                <form>
+                    <input class="menu-button" type="button" value="Info" name="test" onclick="showCategory('info')"/><br />
+                    <input class="menu-button" type="button" value="Add" name="test" onclick="showCategory('add')" />
+                </form>
+            </div>
+            <div id="info" class="user-main" style="display:block">
+                <h4>Ім'я користувача: @Model.Login</h4>
+                <h4>Електронна адреса: @Model.Email</h4>
+                <button class="menu-button" onclick="editUserData()">Редагувати дані</button>
+            </div>
+            <div id="add" class="user-main" style="display:none">
+                <form method="post" asp-controller="Users" asp-action="AddMovie" enctype="multipart/form-data" class="movie-form">
+                    <label for="movie-title" class="form-label">Назва фільму:</label><br>
+                    <input type="text" id="movie-title" class="form-input" name="movie_title" placeholder="Введіть назву фільму" required><br><br>
+                
+                    <label for="release-date" class="form-label">Дата виходу:</label><br>
+                    <input type="date" id="release-date" class="form-input" name="release_date" required><br><br>
+                
+                    <label for="country" class="form-label">Країна:</label><br>
+                    <input type="text" id="country" class="form-input" name="country" placeholder="Введіть країну" required><br><br>
+                
+                    <label for="director" class="form-label">Режисер:</label><br>
+                    <input type="text" id="director" class="form-input" name="director" placeholder="Введіть ім'я режисера" required><br><br>
+                
+                    <label for="genre" class="form-label">Жанр:</label><br>
+                    <input type="text" id="genre" class="form-input" name="genre" placeholder="Введіть жанр фільму" required><br><br>
+                
+                    <label for="movie-description" class="form-label">Опис фільму:</label><br>
+                    <textarea id="movie-description" class="form-input" name="movie_description" placeholder="Введіть опис фільму" required></textarea><br><br>
+                
+                    <label for="movie-poster" class="form-label">Постер фільму:</label><br>
+                    <input type="file" id="movie-poster" class="form-input" name="movie_poster" accept="image/*" multiple><br>
+
+                    <div class="movie-poster-preview" style="display:none;">
+                        <h4>Попередній перегляд постера:</h4>
+                        <img id="poster-preview" src="#" alt="Постер не вибрано" style="max-width: 200px;" />
+                    </div><br />
+                
+                    <label for="price" class="form-label">Ціна за перегляд:</label><br>
+                    <input type="number" id="price" class="form-input" name="price" placeholder="Введіть ціну" min="0" step="0.01" required><br><br>
+                
+                    <label for="movie-file" class="form-label">Ссилка на файл фільму:</label><br>
+                    <input type="text" id="movie-file" class="form-input" name="movie_file" multiple><br><br>
+                
+                    <input type="submit" class="form-submit" value="Додати фільм">
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        function showCategory(category) {
+            const categories = document.querySelectorAll('.user-main');
+            categories.forEach(cat => cat.style.display = 'none'); // Сховати всі категорії
+            document.getElementById(category).style.display = 'block'; // Показати вибрану категорію
+            
+            if(category === 'add')
+            {
+                document.getElementById('user-title').innerHTML = 'Додавання фільму';
+            }
+            else if(category === 'info')
+            {
+                document.getElementById('user-title').innerHTML = 'Ваші данні';
+            }
+        }
+        // Функція для попереднього перегляду постера
+        document.getElementById('movie-poster').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                const img = document.getElementById('poster-preview');
+                img.src = event.target.result;
+                
+            // Показати попередній перегляд після завантаження зображення
+                const previewDiv = document.querySelector('.movie-poster-preview');
+                previewDiv.style.display = 'block'; // Показати блок попереднього перегляду
+            };
+
+            if (file) {
+                reader.readAsDataURL(file); // Прочитати файл як DataURL
+            }
+        });
+    </script>
+</body>
+</html>
