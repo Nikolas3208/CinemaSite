@@ -7,8 +7,8 @@
     <title>Кіносайт</title>
     <link rel="stylesheet" href="~/css/movie-style.css">
 </head>
-<body>
-    <div>
+<body style="background-image:url('/files/img/background-photo.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover;">
+    <div class="base-container-test">
         <header>
             <div class="header-content">
                 <h1>Ласкаво просимо на CrazyViewing</h1>
@@ -17,7 +17,7 @@
         </header>
 
         
-
+        <div style="background-color:#363c49">
         <div class="content">
             <section class="category">
                 <h2>Фільми</h2>
@@ -26,12 +26,11 @@
                     <div class="carousel-container">
                         @foreach(MovieModel movie in Model)
                         {
-                            <a href="~/Home/MovieView?title=@movie.Title">
-                                <div class="carousel-item-test">
+
+                                <div class="carousel-item-test" onclick="watchMovie('@movie.Title','@movie.Price')">
                                     <img class="poster" src="~/files/posters/@movie.PosterPath" aly="@movie.Title" />
                                     <h3>@movie.Title</h3>
                                 </div>
-                            </a>
                         }
                     </div>
                     <button class="carousel-btn next" onclick="scrollCarousel('movies', 1)">&#10095;</button>
@@ -84,28 +83,43 @@
             </section>
         </div>
 
-        <!-- Модальне вікно -->
-        <div id="movieModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <h2 id="movieTitle"></h2>
-                <p id="moviePrice"></p>
-                <div>
-                    <label for="viewType">Тип перегляду:</label>
-                    <select id="viewType">
-                        <option value="online">Онлайн перегляд</option>
-                        <option value="cinema">Перегляд у кіно</option>
-                    </select>
-                </div>
-                <div id="seatSelection" style="display:none;">
-                    <label for="seat">Вибір місця:</label>
-                    <input type="number" id="seat" min="1" max="100" placeholder="Виберіть місце">
-                </div>
-                <button onclick="confirmBooking()">Підтвердити</button>
-            </div>
-        </div>
+            <!-- Модальне вікно -->
+            <div id="movieModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
 
+                    <!-- Перший розділ: Інформація про фільм -->
+                    <div class="modal-section">
+                        <img id="movieImage" src="" alt="Movie Image" class="movie-image">
+                        <h2 id="movieTitle"></h2>
+                        <p id="moviePrice"></p>
+                    </div>
+
+                    <!-- Кнопки для перемикання між контейнерами -->
+                    <div class="view-selection">
+                        <button onclick="showOnlineView()">Онлайн перегляд</button>
+                        <button onclick="showCinemaView()">Перегляд у кіно</button>
+                    </div>
+
+                    <!-- Контейнери для двох варіантів перегляду -->
+                    <div id="onlineView" class="view-container">
+                        <h3>Онлайн перегляд</h3>
+                        <p>Ціна за перегляд: <span id="onlinePrice"></span> грн</p>
+                        <button onclick="confirmOnlineBooking()">Підтвердити онлайн перегляд</button>
+                    </div>
+
+                    <div id="cinemaView" class="view-container" style="display: none;">
+                        <h3>Перегляд у кіно</h3>
+                        <div id="cinemaSeats"></div>
+                        <p>Загальна ціна: <span id="cinemaTotalPrice">0</span> грн</p>
+                        <button onclick="confirmBooking()">Оформити замовлення в кіно</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
     <script src="~/js/movie-index.js"></script>
 </body>
